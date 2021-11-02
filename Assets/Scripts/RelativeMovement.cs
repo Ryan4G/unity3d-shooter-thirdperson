@@ -25,6 +25,8 @@ public class RelativeMovement : MonoBehaviour
 
     private Animator _animator;
 
+    public float pushForce = 3.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -119,5 +121,11 @@ public class RelativeMovement : MonoBehaviour
     public void OnControllerColliderHit(ControllerColliderHit hit)
     {
         _contact = hit;
+
+        Rigidbody body = hit.collider.attachedRigidbody;
+        if (body != null && !body.isKinematic)
+        {
+            body.velocity = hit.moveDirection * pushForce;
+        }
     }
 }

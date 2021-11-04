@@ -7,6 +7,8 @@ public class DeviceTrigger : MonoBehaviour
     [SerializeField]
     private GameObject[] targets;
 
+    public bool requireKey;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,11 @@ public class DeviceTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (requireKey && Manager.Inventory.equippedItem != "Key")
+        {
+            return;
+        }
+
         foreach(GameObject target in targets)
         {
             target.SendMessage("Activate");
@@ -29,6 +36,11 @@ public class DeviceTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (requireKey && Manager.Inventory.equippedItem != "Key")
+        {
+            return;
+        }
+
         foreach (GameObject target in targets)
         {
             target.SendMessage("Deactivate");

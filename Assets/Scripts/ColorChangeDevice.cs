@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorChangeDevice : MonoBehaviour
+public class ColorChangeDevice : BaseDevice
 {
     [SerializeField]
     private DoorOpenDevice _doorOpenDevice;
@@ -26,7 +26,7 @@ public class ColorChangeDevice : MonoBehaviour
         
     }
 
-    public void Operate()
+    public override void Operate()
     {
         _doorOpenDevice.Operate();
 

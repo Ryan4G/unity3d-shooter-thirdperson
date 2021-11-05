@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
         private set;
     }
 
-    public void Startup()
+    public void Startup(NetworkService service)
     {
         Debug.Log("Player manager starting...");
 
@@ -39,5 +39,7 @@ public class PlayerManager : MonoBehaviour, IGameManager
         health = Mathf.Min(maxHealth, Mathf.Max(health, 0));
 
         Debug.Log($"{health} / {maxHealth}");
+
+        Messenger.Boardcast(GameEvent.HEALTH_UPDATED);
     }
 }

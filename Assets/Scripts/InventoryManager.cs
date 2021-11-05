@@ -14,9 +14,13 @@ public class InventoryManager : MonoBehaviour, IGameManager
 
     public string equippedItem { get; private set; }
 
-    public void Startup()
+    private NetworkService _network;
+
+    public void Startup(NetworkService network)
     {
         Debug.Log("Inventory manager starting...");
+
+        _network = network;
 
         _items = new Dictionary<string, int>();
 
@@ -32,7 +36,7 @@ public class InventoryManager : MonoBehaviour, IGameManager
             itemDisplay += $"{item.Key} ({item.Value}) \n";
         }
 
-        Debug.Log(itemDisplay);
+        //Debug.Log(itemDisplay);
     }
 
     public void AddItem(string name)

@@ -103,4 +103,14 @@ public class InventoryManager : MonoBehaviour, IGameManager
         DisplayItems();
         return true;
     }
+
+    public void UpdateData(Dictionary<string, int> items)
+    {
+        _items = items;
+    }
+
+    public Dictionary<string, int> GetData()
+    {
+        return _items;
+    }
 }
